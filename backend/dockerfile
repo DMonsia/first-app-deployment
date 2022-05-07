@@ -1,0 +1,22 @@
+FROM python:3.8-slim
+
+# FROM python:3.8-slim
+WORKDIR /app
+COPY ./requirements.txt /app
+RUN pip install -r requirements.txt
+COPY . /app
+ENTRYPOINT ["uvicorn", "src.api:app", "--host", "0.0.0.0", "--port", "5005"]
+
+# Install and update 
+# RUN apt-get update -y && \
+#     apt-get upgrade -y && \
+#     /usr/local/bin/python -m pip install --upgrade pip
+
+# WORKDIR /work
+# COPY ./requirements.txt /work
+
+# RUN pip install -r requirements.txt
+# COPY . /work
+# #EXPOSE 80
+
+# CMD uvicorn src.api:app --host 0.0.0.0 --port 5005 --reload
